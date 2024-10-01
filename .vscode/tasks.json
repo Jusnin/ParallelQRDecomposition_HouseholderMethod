@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build_mpi_program",
+            "type": "shell",
+            "command": "nvcc",
+            "args": [
+                "${workspaceFolder}/householder_qr.cu",
+                "-ccbin", "cl.exe",               // Use MSVC as the host compiler
+                "-Xcompiler", "/openmp",          // Enable OpenMP support
+                "-g",                             // Enable debug info for host code
+                "-G",                             // Enable debug info for device code
+                "-I", "C:/Program Files (x86)/Microsoft SDKs/MPI/Include",  // Path to MS-MPI headers
+                "-L", "C:/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64",  // Path to MS-MPI libraries
+                "-lmsmpi",                        // Link MS-MPI library
+                "-lcudart",                       // Link CUDA runtime
+                "-o", "${workspaceFolder}/householder_qr.exe"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$msCompile"]
+        },
+        {
+            "label": "run_mpi_program",
+            "type": "shell",
+            "command": "mpiexec",
+            "args": [
+                "-np", "4",  // Number of MPI processes to run
+                "${workspaceFolder}/householder_qr.exe"
+            ],
+            "group": "none",
+            "dependsOn": "build_mpi_program",
+            "problemMatcher": []
+        }
+    ]
+}
