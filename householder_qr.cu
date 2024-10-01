@@ -624,7 +624,7 @@ void export_matrices_to_csv(const std::string& filename, double** original_A, do
     // Write Matrix Q
     file << "Matrix Q\n";
     for (int i = 0; i < m; ++i) {
-        for (int j = 0; j < m; ++j) {
+        for (int j = 0; j < n; ++j) {
             file << Q[i][j];
             if (j != m - 1) file << ",";
         }
@@ -634,7 +634,7 @@ void export_matrices_to_csv(const std::string& filename, double** original_A, do
 
     // Write Matrix R
     file << "Matrix R\n";
-    for (int i = 0; i < m; ++i) {  // R is m x n
+    for (int i = 0; i < n; ++i) {  // R is m x n
         for (int j = 0; j < n; ++j) {
             file << R[i][j];
             if (j != n - 1) file << ",";
@@ -805,9 +805,9 @@ double** show_performance(const chrono::duration<double>& cpu_time,
     // Display Q and R matrices at the bottom
     if (m <= 20 && n <= 20) {
         cout << "\nQ matrix after QR decomposition:\n";
-        print_matrix("Q", Q_display, m, m); // Use Q_display
+        print_matrix("Q", Q_display, m, n); // Use Q_display
         cout << "\nR matrix after QR decomposition:\n";
-        print_matrix("R", R_display, m, n); // Use R_display
+        print_matrix("R", R_display, n, n); // Use R_display
     } else {
         cout << "Q and R matrices are too large to display.\n";
     }
