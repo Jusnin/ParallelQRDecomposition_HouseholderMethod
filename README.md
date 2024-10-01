@@ -90,8 +90,27 @@ The output includes a detailed breakdown of these metrics.
 
 ## Result Display
 Here is an example screenshot of the program's output showing performance comparison, reconstruction error, and speedup calculations:
+## Result Display
 
-![Result Display Screenshot](path-to-screenshot-file)
+### 1. Program Input
+The image below shows the initial input phase of the program, where the user is prompted to either input the matrix manually, load it from a CSV file, or use default values.
+
+![Program Input](./ResultScreenshot/ProgramInput.png)
+
+### 2. CSV Output
+If the user chooses to export the matrices (Original, Q, R, and Reconstructed), they are saved in a CSV file, which can be used for further analysis. The following screenshot shows the exported CSV output.
+
+![CSV Output](./ResultScreenshot/CSVOutput.png)
+
+### 3. Performance Summary
+Once the program has completed the QR decomposition using CUDA, OpenMP, MPI, and CPU, it displays a detailed performance summary. This summary includes the execution time, speedup factors, and accuracy for each method compared to the CPU implementation.
+
+![Performance Summary](./ResultScreenshot/PerformanceSummary.png)
+
+### 4. Result Verification
+The program verifies the accuracy of the QR decomposition by reconstructing the original matrix from Q and R. The following screenshot shows the verification process and the reconstruction error, which indicates how closely the reconstructed matrix matches the original.
+
+![Result Verification](./ResultScreenshot/ResultVerification.png)
 
 ## Running the Program with Batch File
 A batch file is provided to make it easier to run the program with MPI on a Windows system.
